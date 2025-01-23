@@ -8,7 +8,6 @@ services:
       context: .
       dockerfile: API_UP/Dockerfile
     ports:
-      - "5123:5123"
-      - "6123:6123"
+      - "5181:5181"
     volumes:
-      - ./static:/var/opt/
+      - ./static:/var/opt/api_up/
