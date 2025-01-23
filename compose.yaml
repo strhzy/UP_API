@@ -22,6 +22,7 @@ services:
       - "1433:1433"
     volumes:
       - mssql-data:/var/opt/mssql
+      - ./init.sql:/init.sql
     healthcheck:
       test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-U", "sa", "-P", "12345678Al!", "-Q", "SELECT 1"]
       interval: 10s
@@ -55,7 +56,7 @@ services:
         done
 
         # Создаем базу данных
-        /opt/mssql-tools/bin/sqlcmd -U sa -P 12345678Al! -Q "CREATE DATABASE UP IF NOT EXISTS"
+        /opt/mssql-tools/bin/sqlcmd -U sa -P 12345678Al! -i /init.sql
 
         # Бесконечный цикл для поддержания работы контейнера
         while true; do sleep 1; done
