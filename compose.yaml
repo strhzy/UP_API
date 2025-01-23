@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: API_UP/Dockerfile
     ports:
-      - "5181:5181"
+      - "5181:8080"
     volumes:
       - api-data:/var/opt/api_up/
   mssql:
