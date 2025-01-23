@@ -10,4 +10,56 @@ services:
     ports:
       - "5181:5181"
     volumes:
-      - ./static:/var/opt/api_up/
+      - api-data:/var/opt/api_up/
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    environment:
+      SA_PASSWORD: "12345678Al!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-U", "sa", "-P", "12345678Al!", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    user: root
+    command:
+      - /bin/bash
+      - -c
+      - |
+        # Устанавливаем mssql-tools
+        apt-get update && \
+        apt-get install -y curl gnupg && \
+        curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+        curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+        apt-get update && \
+        ACCEPT_EULA=Y apt-get install -y mssql-tools
+
+        # Возвращаемся к пользователю mssql
+        chown -R mssql /var/opt/mssql && \
+        chown -R mssql /opt/mssql-tools && \
+        su mssql -c "/opt/mssql/bin/sqlservr &"
+
+        # Ждем запуска SQL Server (до 30 секунд)
+        for i in {1..30}; do
+          if /opt/mssql-tools/bin/sqlcmd -U sa -P 12345678Al! -Q "SELECT 1"; then
+            break
+          fi
+          echo "Waiting for SQL Server to start... (attempt $i)"
+          sleep 1
+        done
+
+        # Создаем базу данных
+        /opt/mssql-tools/bin/sqlcmd -U sa -P 12345678Al! -Q "CREATE DATABASE UP IF NOT EXISTS"
+
+        # Бесконечный цикл для поддержания работы контейнера
+        while true; do sleep 1; done
+
+volumes:
+  mssql-data:
+  api-data:
