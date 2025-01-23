@@ -1,0 +1,14 @@
+﻿version: '3'
+services:
+  api_up:
+    image: api_up
+    container_name: up_api
+    restart: always
+    build:
+      context: .
+      dockerfile: API_UP/Dockerfile
+    ports:
+      - "5123:5123"
+      - "6123:6123"
+    volumes:
+      - ./static:/var/opt/
