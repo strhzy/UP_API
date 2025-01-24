@@ -13,9 +13,9 @@ public partial class EmployeeAccount
 
     public long? RoleId { get; set; }
     
-    public string Telephone { get; set; }
+    public string? Telephone { get; set; }
     
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 

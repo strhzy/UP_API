@@ -1,8 +1,10 @@
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'UP')
 BEGIN
 	CREATE DATABASE UP;
+	
 
 	USE UP;
+	
 
 	-- Создание таблиц
 	CREATE TABLE Roles (
@@ -14,6 +16,8 @@ BEGIN
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
 	    Login NVARCHAR(50) NOT NULL UNIQUE,
 	    Password NVARCHAR(64) NOT NULL,
+	    Telephone NVARCHAR(11) NOT NULL,
+	    Email NVARCHAR(50) NOT NULL,
 	    RoleId BIGINT,
 	    FOREIGN KEY (RoleId) REFERENCES Roles(ID)
 	);
@@ -99,17 +103,17 @@ BEGIN
 	(N'Механик');
 	
 	-- Вставка данных в таблицу EmployeeAccounts
-	INSERT INTO EmployeeAccounts (Login, Password, RoleId) VALUES
-	(N'admin', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1), -- Пароль: admin123
-	(N'manager', N'1c9c424f40b3c486bfa9f5d934b2a5f1a5a4d3a7f8b9c0d1e2f3a4b5c6d7e8f', 2), -- Пароль: manager123
-	(N'mechanic', N'5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 3), -- Пароль: mechanic123
-	(N'user4', N'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', 2), -- Пароль: password4
-	(N'user5', N'd4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35', 3), -- Пароль: password5
-	(N'user6', N'4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce', 2), -- Пароль: password6
-	(N'user7', N'4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a', 3), -- Пароль: password7
-	(N'user8', N'ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d', 2), -- Пароль: password8
-	(N'user9', N'e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683', 3), -- Пароль: password9
-	(N'user10', N'4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5', 2); -- Пароль: password10
+	INSERT INTO EmployeeAccounts (Login, Password, Telephone, Email, RoleId) VALUES
+    (N'admin', N'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', N'79991234567', N'admin@example.com', 1), -- Пароль: admin123
+    (N'manager', N'1c9c424f40b3c486bfa9f5d934b2a5f1a5a4d3a7f8b9c0d1e2f3a4b5c6d7e8f', N'79997654321', N'manager@example.com', 2), -- Пароль: manager123
+    (N'mechanic', N'5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', N'79991112233', N'mechanic@example.com', 3), -- Пароль: mechanic123
+    (N'user4', N'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', N'79992223344', N'user4@example.com', 2), -- Пароль: password4
+    (N'user5', N'd4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35', N'79993334455', N'user5@example.com', 3), -- Пароль: password5
+    (N'user6', N'4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce', N'79994445566', N'user6@example.com', 2), -- Пароль: password6
+    (N'user7', N'4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a', N'79995556677', N'user7@example.com', 3), -- Пароль: password7
+    (N'user8', N'ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d', N'79996667788', N'user8@example.com', 2), -- Пароль: password8
+    (N'user9', N'e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683', N'79997778899', N'user9@example.com', 3), -- Пароль: password9
+    (N'user10', N'4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5', N'79998889900', N'user10@example.com', 2); -- Пароль: password10
 	
 	-- Вставка данных в таблицу Position
 	INSERT INTO Position (PositionName) VALUES
