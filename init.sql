@@ -1,16 +1,16 @@
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'UP')
 BEGIN
-	CREATE DATABASE UP;
+	CREATE DATABASE UP; GO
 	
 
-	USE UP;
+	USE UP; GO
 	
 
 	-- Создание таблиц
 	CREATE TABLE Roles (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
 	    RoleName NVARCHAR(50) NOT NULL
-	);
+	); GO
 	
 	CREATE TABLE EmployeeAccounts (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
@@ -20,17 +20,17 @@ BEGIN
 	    Email NVARCHAR(50) NOT NULL,
 	    RoleId BIGINT,
 	    FOREIGN KEY (RoleId) REFERENCES Roles(ID)
-	);
+	); GO
 	
 	CREATE TABLE Position (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
 	    PositionName NVARCHAR(50) NOT NULL
-	);
+	); GO
 	
 	CREATE TABLE Qualification (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
 	    QualificationName NVARCHAR(50) NOT NULL
-	);
+	); GO GO
 	
 	CREATE TABLE ServiceStations (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
@@ -38,7 +38,7 @@ BEGIN
 	    TelephoneNumber NVARCHAR(11) NOT NULL,
 	    Email NVARCHAR(50) NOT NULL,
 	    QuantityWorkPlaces BIGINT NOT NULL
-	);
+	); GO
 	
 	CREATE TABLE Employee (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
@@ -53,7 +53,7 @@ BEGIN
 	    FOREIGN KEY (QualificationId) REFERENCES Qualification(ID),
 	    FOREIGN KEY (ServiceStationId) REFERENCES ServiceStations(ID),
 	    FOREIGN KEY (EmployeeAccountID) REFERENCES EmployeeAccounts(ID)
-	);
+	); GO
 	
 	CREATE TABLE Clients (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
@@ -65,7 +65,7 @@ BEGIN
 	    CarModel NVARCHAR(50) NOT NULL,
 	    GovNumber NVARCHAR(20) NOT NULL,
 	    LastVisitDate DATETIME
-	);
+	); GO
 	
 	CREATE TABLE Orders (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
@@ -74,19 +74,19 @@ BEGIN
 	    RepairDate DATETIME,
 	    StatusName NVARCHAR(20),
 	    FOREIGN KEY (ClientId) REFERENCES Clients(ID)
-	);
+	); GO
 	
 	CREATE TABLE Operations (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
 	    OperationName NVARCHAR(50) NOT NULL,
 	    Price DECIMAL(10, 2) NOT NULL
-	);
+	); GO
 	
 	CREATE TABLE SpareParts (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
 	    PartName NVARCHAR(50) NOT NULL,
 	    Price DECIMAL(10, 2) NOT NULL
-	);
+	); GO
 	
 	CREATE TABLE OrderSpareParts (
 	    ID BIGINT PRIMARY KEY IDENTITY(1,1),
@@ -94,13 +94,13 @@ BEGIN
 	    OrderId BIGINT,
 	    FOREIGN KEY (SparePartId) REFERENCES SpareParts(ID),
 	    FOREIGN KEY (OrderId) REFERENCES Orders(ID)
-	);
+	); GO
 	
 	-- Вставка данных в таблицу Roles
 	INSERT INTO Roles (RoleName) VALUES
 	(N'Администратор'),
 	(N'Менеджер'),
-	(N'Механик');
+	(N'Механик'); GO
 	
 	-- Вставка данных в таблицу EmployeeAccounts
 	INSERT INTO EmployeeAccounts (Login, Password, Telephone, Email, RoleId) VALUES
@@ -113,7 +113,7 @@ BEGIN
     (N'user7', N'4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a', N'79995556677', N'user7@example.com', 3), -- Пароль: password7
     (N'user8', N'ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d', N'79996667788', N'user8@example.com', 2), -- Пароль: password8
     (N'user9', N'e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683', N'79997778899', N'user9@example.com', 3), -- Пароль: password9
-    (N'user10', N'4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5', N'79998889900', N'user10@example.com', 2); -- Пароль: password10
+    (N'user10', N'4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5', N'79998889900', N'user10@example.com', 2); GO -- Пароль: password10
 	
 	-- Вставка данных в таблицу Position
 	INSERT INTO Position (PositionName) VALUES
@@ -126,13 +126,13 @@ BEGIN
 	(N'Техник'),
 	(N'Инженер'),
 	(N'Консультант'),
-	(N'Администратор сервиса');
+	(N'Администратор сервиса'); GO
 	
 	-- Вставка данных в таблицу Qualification
 	INSERT INTO Qualification (QualificationName) VALUES
 	(N'Мастер'),
 	(N'Специалист'),
-	(N'Новичок');
+	(N'Новичок'); GO
 	
 	-- Вставка данных в таблицу ServiceStations
 	INSERT INTO ServiceStations (Address, TelephoneNumber, Email, QuantityWorkPlaces) VALUES
@@ -145,7 +145,7 @@ BEGIN
 	(N'ул. Горная, 404', N'55667788990', N'station7@example.com', 9),
 	(N'ул. Солнечная, 505', N'66778899001', N'station8@example.com', 10),
 	(N'ул. Лунная, 606', N'77889900112', N'station9@example.com', 11),
-	(N'ул. Звездная, 707', N'88990011223', N'station10@example.com', 12);
+	(N'ул. Звездная, 707', N'88990011223', N'station10@example.com', 12); GO
 	
 	-- Вставка данных в таблицу Employee
 	INSERT INTO Employee (Surname, EmployeeName, Patronymic, PositionId, QualificationId, ServiceStationId, EmployeeAccountID) VALUES
@@ -158,7 +158,7 @@ BEGIN
 	(N'Михайлов', N'Михаил', N'Михайлович', 7, 1, 4, 7),
 	(N'Алексеев', N'Алексей', N'Алексеевич', 8, 2, 4, 8),
 	(N'Андреев', N'Андрей', N'Андреевич', 9, 3, 5, 9),
-	(N'Антонов', N'Антон', N'Антонович', 10, 1, 5, 10);
+	(N'Антонов', N'Антон', N'Антонович', 10, 1, 5, 10); GO
 	
 	-- Вставка данных в таблицу Clients
 	INSERT INTO Clients (Surname, ClientName, Patronymic, TelephoneNumber, CarBrand, CarModel, GovNumber, LastVisitDate) VALUES
@@ -171,7 +171,7 @@ BEGIN
 	(N'Андреев', N'Андрей', N'Андреевич', N'77777777777', N'Kia', N'Rio', N'Х901НО', N'2023-04-10'),
 	(N'Антонов', N'Антон', N'Антонович', N'88888888888', N'Volkswagen', N'Golf', N'Ц234ПР', N'2023-03-15'),
 	(N'Борисов', N'Борис', N'Борисович', N'99999999999', N'Skoda', N'Octavia', N'Ч567СТ', N'2023-02-20'),
-	(N'Владимиров', N'Владимир', N'Владимирович', N'10101010101', N'Renault', N'Logan', N'Ш890УФ', N'2023-01-25');
+	(N'Владимиров', N'Владимир', N'Владимирович', N'10101010101', N'Renault', N'Logan', N'Ш890УФ', N'2023-01-25'); GO
 	
 	-- Вставка данных в таблицу Orders
 	INSERT INTO Orders (ClientId, DateReference, RepairDate, StatusName) VALUES
@@ -184,7 +184,7 @@ BEGIN
 	(7, N'2023-10-11', N'2023-10-16', N'Завершено'),
 	(8, N'2023-10-12', NULL, N'В процессе'),
 	(9, N'2023-10-13', N'2023-10-18', N'Завершено'),
-	(10, N'2023-10-14', NULL, N'В процессе');
+	(10, N'2023-10-14', NULL, N'В процессе'); GO
 	
 	-- Вставка данных в таблицу Operations
 	INSERT INTO Operations (OperationName, Price) VALUES
@@ -197,7 +197,7 @@ BEGIN
 	(N'Замена шин', 60.00),
 	(N'Балансировка колес', 50.00),
 	(N'Замена стекла', 150.00),
-	(N'Покраска кузова', 300.00);
+	(N'Покраска кузова', 300.00); GO
 	
 	-- Вставка данных в таблицу SpareParts
 	INSERT INTO SpareParts (PartName, Price) VALUES
@@ -210,7 +210,7 @@ BEGIN
 	(N'Шины', 80.00),
 	(N'Стекло лобовое', 120.00),
 	(N'Краска', 200.00),
-	(N'Детали двигателя', 300.00);
+	(N'Детали двигателя', 300.00); GO
 	
 	-- Вставка данных в таблицу OrderSpareParts
 	INSERT INTO OrderSpareParts (SparePartId, OrderId) VALUES
@@ -223,7 +223,7 @@ BEGIN
 	(7, 7),
 	(8, 8),
 	(9, 9),
-	(10, 10);
+	(10, 10); GO
 END;
 
 
