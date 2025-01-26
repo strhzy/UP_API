@@ -5,7 +5,7 @@ namespace API_UP.Models;
 
 public partial class Employee
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string Surname { get; set; } = null!;
 
@@ -13,13 +13,13 @@ public partial class Employee
 
     public string Patronymic { get; set; } = null!;
 
-    public int PositionId { get; set; }
+    public long PositionId { get; set; }
 
-    public int QualificationId { get; set; }
+    public long QualificationId { get; set; }
 
-    public int ServiceStationId { get; set; }
+    public long ServiceStationId { get; set; }
 
-    public int EmployeeAccountId { get; set; }
+    public long EmployeeAccountId { get; set; }
 
     public virtual EmployeeAccount EmployeeAccount { get; set; } = null!;
 

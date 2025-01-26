@@ -5,7 +5,7 @@ namespace API_UP.Models;
 
 public partial class Status
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string StatusName { get; set; } = null!;
 

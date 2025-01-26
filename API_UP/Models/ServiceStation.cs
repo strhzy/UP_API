@@ -5,7 +5,7 @@ namespace API_UP.Models;
 
 public partial class ServiceStation
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string Address { get; set; } = null!;
 
@@ -13,7 +13,7 @@ public partial class ServiceStation
 
     public string Email { get; set; } = null!;
 
-    public int QuantityWorkPlaces { get; set; }
+    public long QuantityWorkPlaces { get; set; }
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 

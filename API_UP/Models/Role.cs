@@ -5,7 +5,7 @@ namespace API_UP.Models;
 
 public partial class Role
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string RoleName { get; set; } = null!;
 

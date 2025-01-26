@@ -5,9 +5,9 @@ namespace API_UP.Models;
 
 public partial class Order
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
-    public int ClientId { get; set; }
+    public long ClientId { get; set; }
 
     public DateOnly DateReference { get; set; }
 
@@ -15,15 +15,15 @@ public partial class Order
 
     public DateOnly RepairDate { get; set; }
 
-    public int StatusId { get; set; }
+    public long StatusId { get; set; }
 
-    public int ServiceStationId { get; set; }
+    public long ServiceStationId { get; set; }
 
     public decimal Price { get; set; }
 
-    public int EmployeeId { get; set; }
+    public long EmployeeId { get; set; }
 
-    public int OperationId { get; set; }
+    public long OperationId { get; set; }
 
     public virtual Client Client { get; set; } = null!;
 

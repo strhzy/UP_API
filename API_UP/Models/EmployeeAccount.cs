@@ -5,7 +5,7 @@ namespace API_UP.Models;
 
 public partial class EmployeeAccount
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string Login { get; set; } = null!;
 
@@ -15,7 +15,7 @@ public partial class EmployeeAccount
 
     public string Email { get; set; } = null!;
 
-    public int RoleId { get; set; }
+    public long RoleId { get; set; }
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 

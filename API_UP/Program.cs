@@ -23,6 +23,7 @@ builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<ServiceStationService>();
 builder.Services.AddScoped<SparePartService>();
 
+
 var app = builder.Build();
 
 // Настройка middleware
