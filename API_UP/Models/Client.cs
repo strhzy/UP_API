@@ -5,13 +5,13 @@ namespace API_UP.Models;
 
 public partial class Client
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     public string Surname { get; set; } = null!;
 
     public string ClientName { get; set; } = null!;
 
-    public string? Patronymic { get; set; }
+    public string Patronymic { get; set; } = null!;
 
     public string TelephoneNumber { get; set; } = null!;
 
@@ -21,7 +21,7 @@ public partial class Client
 
     public string GovNumber { get; set; } = null!;
 
-    public DateTime? LastVisitDate { get; set; }
+    public DateOnly LastVisitDate { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

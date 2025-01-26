@@ -8,10 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<MyDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Регистрация сервисов
-builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<EmployeeService>();
 builder.Services.AddScoped<EmployeeAccountService>();

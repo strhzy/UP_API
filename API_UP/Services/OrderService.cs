@@ -46,8 +46,13 @@ public class OrderService
 
         order.ClientId = updatedOrder.ClientId;
         order.DateReference = updatedOrder.DateReference;
+        order.Description = updatedOrder.Description;
         order.RepairDate = updatedOrder.RepairDate;
-        order.StatusName = updatedOrder.StatusName;
+        order.StatusId = updatedOrder.StatusId;
+        order.ServiceStationId = updatedOrder.ServiceStationId;
+        order.Price = updatedOrder.Price;
+        order.EmployeeId = updatedOrder.EmployeeId;
+        order.OperationId = updatedOrder.OperationId;
 
         await _context.SaveChangesAsync();
         return order;

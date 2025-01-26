@@ -45,6 +45,8 @@ public class SparePartService
         }
 
         sparePart.PartName = updatedSparePart.PartName;
+        sparePart.Articul = updatedSparePart.Articul;
+        sparePart.Quantity = updatedSparePart.Quantity;
         sparePart.Price = updatedSparePart.Price;
 
         await _context.SaveChangesAsync();

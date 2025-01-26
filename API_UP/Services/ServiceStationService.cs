@@ -47,6 +47,7 @@ public class ServiceStationService
         serviceStation.Address = updatedServiceStation.Address;
         serviceStation.TelephoneNumber = updatedServiceStation.TelephoneNumber;
         serviceStation.Email = updatedServiceStation.Email;
+        serviceStation.QuantityWorkPlaces = updatedServiceStation.QuantityWorkPlaces;
 
         await _context.SaveChangesAsync();
         return serviceStation;
