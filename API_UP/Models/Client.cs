@@ -21,7 +21,7 @@ public partial class Client
 
     public string GovNumber { get; set; } = null!;
 
-    public DateOnly LastVisitDate { get; set; }
+    public DateTime LastVisitDate { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

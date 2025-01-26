@@ -9,11 +9,11 @@ public partial class Order
 
     public long ClientId { get; set; }
 
-    public DateOnly DateReference { get; set; }
+    public DateTime DateReference { get; set; }
 
     public string Description { get; set; } = null!;
 
-    public DateOnly RepairDate { get; set; }
+    public DateTime RepairDate { get; set; }
 
     public long StatusId { get; set; }
 
