@@ -1,7 +1,10 @@
 using API_UP.Data;
 using API_UP.Models;
 using API_UP.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +25,8 @@ builder.Services.AddScoped<QualificationService>();
 builder.Services.AddScoped<RoleService>();
 builder.Services.AddScoped<ServiceStationService>();
 builder.Services.AddScoped<SparePartService>();
+builder.Services.AddScoped<StatusService>();
+builder.Services.AddScoped<IReportService,ReportService>();
 
 
 var app = builder.Build();

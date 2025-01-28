@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using API_UP.Data;
 using API_UP.Models;
 using Microsoft.EntityFrameworkCore;
